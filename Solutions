@@ -1,0 +1,112 @@
+-------------------------------------      1) Two Sum      -------------------------------------
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> numMap;
+        int n = nums.size();
+
+        for (int i = 0; i < n; i++) {
+            int complement = target - nums[i];
+            if (numMap.count(complement)) {
+                return {numMap[complement], i};
+            }
+            numMap[nums[i]] = i;
+        }
+
+        return {}; // No solution found
+    }
+};
+
+-------------------------------------      2) Add Two Numbers      -------------------------------------
+
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* dummyHead = new ListNode(0);
+        ListNode* tail = dummyHead;
+        int carry = 0;
+
+        while (l1 != nullptr || l2 != nullptr || carry != 0) {
+            int digit1 = (l1 != nullptr) ? l1->val : 0;
+            int digit2 = (l2 != nullptr) ? l2->val : 0;
+
+            int sum = digit1 + digit2 + carry;
+            int digit = sum % 10;
+            carry = sum / 10;
+
+            ListNode* newNode = new ListNode(digit);
+            tail->next = newNode;
+            tail = tail->next;
+
+            l1 = (l1 != nullptr) ? l1->next : nullptr;
+            l2 = (l2 != nullptr) ? l2->next : nullptr;
+        }
+
+        ListNode* result = dummyHead->next;
+        delete dummyHead;
+        return result;
+    }
+};
+
+-------------------------------------      7) Reverse Integer      -------------------------------------
+
+class Solution {
+public:
+    int reverse(int x) {
+
+        int ans =0;
+        while(x!=0)
+        {
+            int digit = x%10;
+            if((ans>INT_MAX/10)||(ans<INT_MIN/10))
+            return 0;
+            ans = (ans*10) + digit;
+            x=x/10;
+        }
+        return ans;
+        
+    }
+};
+
+-------------------------------------      233) Power Of Two      -------------------------------------
+
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        for(int i=0;i<=30;i++)
+        {
+            int ans = pow(2,i);
+            if(ans == n )
+            return true;
+        }
+        return false;
+    }
+};
+
+-------------------------------------      1009) Compliment Of Base 10 Integer      -------------------------------------
+
+class Solution {
+public:
+    int bitwiseComplement(int n) {
+        int m = n;
+        int copy = 0;
+
+        if(n==0)
+        return 1;
+
+        while(m!=0)
+        {
+            copy = (copy << 1) | 1;
+            m = m>>1;
+        }
+        int answer = (~n) & copy;
+        return answer;
+    }
+};
+
+-------------------------------------      )       -------------------------------------
+-------------------------------------      )       -------------------------------------
+-------------------------------------      )       -------------------------------------
+-------------------------------------      )       -------------------------------------
+-------------------------------------      )       -------------------------------------
